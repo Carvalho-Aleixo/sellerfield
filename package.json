@@ -1,0 +1,14 @@
+{
+  "name": "sellerfield",
+  "version": "0.1.0-dev",
+  "private": true,
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "scripts": {
+    "fixtures": "bun scripts/seed-fixtures.ts",
+    "fixtures:check": "bun scripts/seed-fixtures.ts --check",
+    "leak-check": "bun scripts/leak-check.ts",
+    "test": "bun test",
+    "gate": "bun run fixtures:check && bun run leak-check && bun test"
+  }
+}

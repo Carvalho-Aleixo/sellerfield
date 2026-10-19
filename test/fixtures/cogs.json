@@ -1,0 +1,7 @@
+[
+{"sku":"DEMO-MUG-01","unit_cost_cents":520,"from_day":"2026-01-01"},
+{"sku":"DEMO-LAMP-02","unit_cost_cents":1250,"from_day":"2026-01-01"},
+{"sku":"DEMO-BAG-03","unit_cost_cents":640,"from_day":"2026-01-01"},
+{"sku":"DEMO-MAT-04","unit_cost_cents":980,"from_day":"2026-01-01"},
+{"sku":"DEMO-CUP-05","unit_cost_cents":430,"from_day":"2026-01-01"}
+]
