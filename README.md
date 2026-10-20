@@ -15,6 +15,14 @@ bun run demo        # http://127.0.0.1:8787, fictional seller, nothing to config
 Settings (environment): `SELLERFIELD_DEMO=0` uses your own database instead of the demo data, `SELLERFIELD_DB` (default `data/sellerfield.sqlite`),
 `SELLERFIELD_PORT` (8787), `SELLERFIELD_HOST` (127.0.0.1) and an optional `SELLERFIELD_PASSWORD` (HTTP basic, any user name) for a LAN or server install.
 
+## Connect your Amazon account
+
+```
+bun run sync 30     # last 30 days of orders, fees, refunds and ad spend into SELLERFIELD_DB
+```
+
+Credentials and what is read: `docs/amazon.md`. Read-only: nothing is written to Amazon.
+
 ## Develop
 
 ```

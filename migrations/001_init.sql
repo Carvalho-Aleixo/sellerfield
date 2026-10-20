@@ -33,6 +33,7 @@ CREATE TABLE fee_events (
   estimated  INTEGER NOT NULL DEFAULT 0
 );
 CREATE INDEX fee_events_day ON fee_events (account_id, day);
+CREATE INDEX fee_events_order ON fee_events (account_id, order_id);
 
 CREATE TABLE refunds (
   account_id INTEGER NOT NULL DEFAULT 1,
