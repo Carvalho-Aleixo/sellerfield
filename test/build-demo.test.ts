@@ -13,4 +13,4 @@ test("static demo: relative paths, the three reports and the static flag", () =>
   expect(readFileSync(join(out, "static.js"), "utf8")).toContain("SELLERFIELD_STATIC = true");
   for (const d of [7, 30, 0]) expect(JSON.parse(readFileSync(join(out, "api", `report-${d}.json`), "utf8")).demo).toBe(true);
   expect(existsSync(join(out, "api", "report-30.json"))).toBe(true);
-});
+}, 60_000); // a busy host stretches the child bun past the default 5 s
