@@ -39,7 +39,7 @@ async function load() {
     data = await res.json();
   } catch {
     state.replaceChildren(
-      h("p", { text: "Could not load the report. Check that SellerField is still running." }),
+      h("p", { text: "We could not load your profit. Try again in a moment." }),
       h("button", { type: "button", id: "retry", text: "Try again" }),
     );
     $("#retry").addEventListener("click", load);
@@ -63,7 +63,7 @@ function render() {
   const missing = summary.skus.filter((s) => s.cogsMissing).length;
   const note = $("#cost-note");
   note.hidden = !missing;
-  note.textContent = `${missing} ${missing === 1 ? "product has" : "products have"} no unit cost, so its profit is overstated. Set it under Product costs.`;
+  note.replaceChildren(`${missing} ${missing === 1 ? "product has" : "products have"} no unit cost, so its profit is overstated. Set it under `, h("a", { href: "#h-cogs", text: "Product costs" }), ".");
   renderTotals();
   renderChart();
   renderTable();

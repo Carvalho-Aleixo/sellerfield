@@ -71,11 +71,11 @@ test("saving a unit cost sends cents and the date, then reloads the report", asy
 
 test("a rejected unit cost shows the server's sentence", async ({ page, mock, allowed, shot }) => {
   allowed.push(/Failed to load resource.*400/);
-  await mock({ cogs: { status: 400, body: { error: "from_day must be a date, YYYY-MM-DD" } } });
+  await mock({ cogs: { status: 400, body: { error: "Enter the date this cost starts, for example 2026-01-31." } } });
   await page.goto("/");
   const form = page.locator(".cogs form").first();
   await form.getByRole("button", { name: "Save" }).click();
-  await expect(form.locator(".msg.err")).toHaveText("from_day must be a date, YYYY-MM-DD");
+  await expect(form.locator(".msg.err")).toHaveText("Enter the date this cost starts, for example 2026-01-31.");
   await shot("state-cost-error");
 });
 
@@ -90,7 +90,7 @@ test("missing unit cost is flagged on the row and in a notice, a loss shows red"
   await shot("state-missing-cost");
 });
 
-test("empty database says so and offers nothing to click", async ({ page, mock, shot }) => {
+test("empty database says so", async ({ page, mock, shot }) => {
   await mock({ report: data.reportEmpty });
   await page.goto("/");
   await expect(page.locator("#state")).toContainText("No orders yet");
@@ -102,7 +102,7 @@ test("server error: a sentence and a retry that recovers", async ({ page, mock, 
   allowed.push(/Failed to load resource.*500/);
   await mock({ report: { status: 500, body: { error: "boom" } } });
   await page.goto("/");
-  await expect(page.locator("#state")).toContainText("Could not load the report");
+  await expect(page.locator("#state")).toContainText("We could not load your profit");
   await expect(page.locator("#state")).not.toContainText("boom");
   await shot("state-error");
   await mock(); // later routes win

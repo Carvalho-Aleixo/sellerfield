@@ -54,9 +54,9 @@ function report(db: Database, days: number, demo: boolean) {
 
 function saveCost(db: Database, body: any) {
   const known = db.query("SELECT 1 FROM products WHERE account_id=? AND sku=?").get(ACCOUNT, body?.sku);
-  if (!known) return "unknown sku";
-  if (!Number.isInteger(body.unit_cost_cents) || body.unit_cost_cents < 0 || body.unit_cost_cents > 100_000_000) return "unit_cost_cents must be a whole number of cents, 0 or more";
-  if (!validDay(body.from_day)) return "from_day must be a date, YYYY-MM-DD";
+  if (!known) return "That product is not in your catalogue.";
+  if (!Number.isInteger(body.unit_cost_cents) || body.unit_cost_cents < 0 || body.unit_cost_cents > 100_000_000) return "Enter a unit cost of $0.00 or more.";
+  if (!validDay(body.from_day)) return "Enter the date this cost starts, for example 2026-01-31.";
   db.query("INSERT INTO cogs (account_id, sku, unit_cost_cents, from_day) VALUES (?,?,?,?) ON CONFLICT(account_id, sku, from_day) DO UPDATE SET unit_cost_cents=excluded.unit_cost_cents")
     .run(ACCOUNT, body.sku, body.unit_cost_cents, body.from_day);
   return null;
