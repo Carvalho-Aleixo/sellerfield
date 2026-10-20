@@ -16,7 +16,7 @@ const RULES: { rule: string; re: RegExp; allow?: (m: string) => boolean }[] = [
   { rule: "private-ip", re: /\b(?:10\.\d{1,3}|192\.168|172\.(?:1[6-9]|2\d|3[01]))\.\d{1,3}\.\d{1,3}\b/g },
   { rule: "tailnet-host", re: /\b[\w.-]+\.ts\.net\b/g },
   { rule: "notion-id", re: /\b[0-9a-f]{32}\b/g },
-  { rule: "email", re: /[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g, allow: (m) => /@(example\.(com|org)|sellerfield\.com|users\.noreply\.github\.com)$/i.test(m) },
+  { rule: "email", re: /[\w.+-]+@[\w-]+(?:\.[A-Za-z][\w-]*)+/g, allow: (m) => /@(example\.(com|org)|sellerfield\.com|users\.noreply\.github\.com)$/i.test(m) },
 ];
 
 export function loadDenylist(path: string): RegExp[] {

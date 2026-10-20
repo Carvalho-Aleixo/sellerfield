@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SellerField dashboard</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script src="/app.js" defer></script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<a class="brand" href="/"><img src="/favicon.svg" alt="" width="28" height="28">SellerField</a>
+<div class="range" role="group" aria-label="Period">
+<button type="button" data-days="7" aria-pressed="false">7 days</button>
+<button type="button" data-days="30" aria-pressed="true">30 days</button>
+<button type="button" data-days="0" aria-pressed="false">All</button>
+</div>
+</div></header>
+<main class="wrap">
+<h1>Profit <span id="period"></span></h1>
+<p id="demo-note" class="notice" hidden><strong>Demo data.</strong> A fictional seller, so you can look around. Nothing here is real and nothing leaves your computer.</p>
+<p id="cost-note" class="notice warn" hidden></p>
+<div id="state" role="status"></div>
+<div id="content" hidden>
+<section aria-labelledby="h-totals">
+<h2 id="h-totals">Where the money went</h2>
+<div id="totals" class="cards"></div>
+</section>
+<section aria-labelledby="h-chart">
+<h2 id="h-chart">Profit per day</h2>
+<div id="chart" class="chart" role="img"></div>
+<div class="axis"><span id="axis-from"></span><span id="axis-max"></span><span id="axis-to"></span></div>
+<p class="legend"><span class="key"></span> Profit <span class="key est"></span> Fees still estimated <span class="key loss"></span> Loss</p>
+</section>
+<section aria-labelledby="h-skus">
+<div class="head">
+<h2 id="h-skus">Profit per product</h2>
+<label class="sort">Sort by <select id="sort">
+<option value="profit-desc">Profit, high to low</option>
+<option value="profit-asc">Profit, low to high</option>
+<option value="sales-desc">Sales, high to low</option>
+<option value="sku-asc">SKU, A to Z</option>
+</select></label>
+</div>
+<table id="skus"></table>
+<p id="reconcile" class="note"></p>
+</section>
+<section aria-labelledby="h-cogs">
+<h2 id="h-cogs">Product costs</h2>
+<p class="note">What one unit costs you. A new cost applies to orders from its date on.</p>
+<div id="cogs" class="cogs"></div>
+</section>
+</div>
+</main>
+<footer class="foot"><div class="wrap"><span>All amounts in USD. Days are Pacific dates.</span><span>AGPL-3.0 open source</span></div></footer>
+</body>
+</html>

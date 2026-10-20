@@ -12,6 +12,7 @@ function run(content: string, deny: RegExp[] = []) {
 
 test("synthetic order id and ASIN pass", () => {
   expect(run("000-0000001-0000001 B0SF000001 demo@example.com")).toEqual([]);
+  expect(run("playwright@1.63.0 @axe-core/playwright@4.14.0")).toEqual([]); // lockfile name@version is not an email
 });
 test("real-shaped order id, unknown ASIN, private IP, host, email fail", () => {
   expect(run(["111", "2223334", "5556667"].join("-"))).toEqual(["amazon-order-id"]);
