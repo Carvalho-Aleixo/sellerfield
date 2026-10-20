@@ -1,6 +1,6 @@
 {
   "name": "sellerfield",
-  "version": "0.1.0-dev",
+  "version": "0.1.0",
   "private": true,
   "license": "AGPL-3.0-only",
   "type": "module",
@@ -11,6 +11,7 @@
     "test": "bun test test/",
     "gate": "bun run fixtures:check && bun run leak-check && bun run test",
     "demo": "bun src/server.ts",
+    "demo:static": "bun scripts/build-demo.ts",
     "sync": "bun src/sync-cli.ts",
     "test:e2e": "rm -rf test-results/screens && playwright test",
     "test:e2e:review": "rm -rf test-results/screens && E2E_BASELINE=skip playwright test",

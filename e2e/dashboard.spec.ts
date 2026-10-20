@@ -47,6 +47,7 @@ test("period buttons reload the report for 7 days and all time", async ({ page, 
 test("sorting reorders the product rows and Other stays last", async ({ page, mock }) => {
   await mock();
   await page.goto("/");
+  await expect(rows(page)).toHaveCount(4); // wait for the report before reading the rows
   const names = async () => (await rows(page).locator("td:first-child > span:first-child").allTextContents());
   expect(await names()).toEqual(["Demo Desk Lamp", "Demo Ceramic Mug", "Demo Canvas Tote", "Other"]); // profit, high to low
   await page.locator("#sort").selectOption("profit-asc");
@@ -121,6 +122,7 @@ test("product titles are text: markup and URLs from Amazon never become elements
 test("no internal ids or jargon in the visible text", async ({ page, mock }) => {
   await mock();
   await page.goto("/");
+  await expect(page.locator("#totals .card")).toHaveCount(6); // wait for the report before reading the text
   const text = await page.locator("main").innerText();
   expect(text).not.toMatch(/\d{12,}/);
   expect(text).not.toMatch(/undefined|NaN|\[object|null/);

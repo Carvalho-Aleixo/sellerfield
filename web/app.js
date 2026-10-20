@@ -34,7 +34,7 @@ async function load() {
   state.textContent = "Loading…";
   $("#content").hidden = true;
   try {
-    const res = await fetch(`/api/report?days=${days}`);
+    const res = await fetch(window.SELLERFIELD_STATIC ? `api/report-${days}.json` : `/api/report?days=${days}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     data = await res.json();
   } catch {
@@ -157,6 +157,11 @@ function renderCosts() {
     );
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      if (window.SELLERFIELD_STATIC) {
+        msg.className = "msg err";
+        msg.textContent = "Saving is turned off in the online demo. Run SellerField yourself to change costs.";
+        return;
+      }
       msg.className = "msg";
       msg.textContent = "Saving…";
       const res = await fetch("/api/cogs", {

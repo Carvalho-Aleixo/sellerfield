@@ -1,0 +1,13 @@
+# Demo (fictional seller) by default. For your own data: SELLERFIELD_DEMO=0 and the Amazon settings in .env (docs/amazon.md).
+services:
+  sellerfield:
+    build: .
+    ports:
+      - "127.0.0.1:8787:8787"
+    env_file:
+      - path: .env
+        required: false
+    volumes:
+      - sellerfield-data:/data
+volumes:
+  sellerfield-data:
